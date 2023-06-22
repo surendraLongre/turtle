@@ -1,18 +1,17 @@
 from turtle import Turtle, Screen
+import random
 
 turtle=Turtle()
+colors = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeepSkyBlue", "LightSeaGreen", "wheat", "SlateGray", "SeaGreen"]
 turtle.shape('turtle')
-turtle.color('firebrick')
-draw=True
-for sides in range (2,11):
-#    sides=int(input("Enter the number of sides: "))
-#    if sides=='off':
-#        draw=False
-#        break
-    turn=(sides-2)*180/sides
-    for i in range(sides):
-        turtle.forward(100)
-        turtle.right(180-turn)
+move=[30, -30]
+angle=[90,-90]
+
+turtle.width(10)
+for i in range(100):
+    turtle.forward(random.choice(move))
+    turtle.color(random.choice(colors))
+    turtle.right(random.choice(angle))
 
 screen=Screen()
 screen.exitonclick()
