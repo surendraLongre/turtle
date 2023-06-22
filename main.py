@@ -9,8 +9,8 @@ angle=[0,90,180,360]
 
 turtle.width(10)
 for i in range(200):
-    turtle.forward(random.choice(move))
     turtle.color(random.choice(colors))
+    turtle.forward(random.choice(move))
     turtle.right(random.choice(angle))
 
 screen=Screen()
