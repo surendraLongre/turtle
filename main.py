@@ -11,7 +11,7 @@ turtle.width(10)
 for i in range(200):
     turtle.color(random.choice(colors))
     turtle.forward(random.choice(move))
-    turtle.right(random.choice(angle))
+    turtle.setheading(random.choice(angle))
 
 screen=Screen()
 screen.exitonclick()
