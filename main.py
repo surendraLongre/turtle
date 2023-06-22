@@ -7,6 +7,7 @@ turtle.shape('turtle')
 move=[30, -30]
 angle=[0,90,180,270]
 
+turtle.speed("fastest")
 turtle.width(10)
 for i in range(200):
     turtle.color(random.choice(colors))
