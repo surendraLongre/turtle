@@ -5,7 +5,7 @@ turtle=Turtle()
 colors = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeepSkyBlue", "LightSeaGreen", "wheat", "SlateGray", "SeaGreen"]
 turtle.shape('turtle')
 move=[30, -30]
-angle=[0,90,180,360]
+angle=[0,90,180,270]
 
 turtle.width(10)
 for i in range(200):
