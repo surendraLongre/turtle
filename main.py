@@ -1,55 +1,76 @@
-import turtle as t
-import colorgram
-from turtle import Screen
+from turtle import Turtle, Screen
 import random
 
-# write random color function code
-def random_color():
-    return random.randint(0,255)
-def move_forward():
-    turtle.forward(10)
-
-def move_backward():
-    turtle.forward(-10)
-
-def left_angle():
-    turtle.left(10)
-
-def right_angle():
-    turtle.right(10)
-
-def right_curve():
-    right_angle()
-    move_forward()
-
-def left_curve():
-    left_angle()
-    move_backward()
-def clear():
-    turtle.clear()
-    turtle.penup()
-    turtle.home()
-    turtle.pendown()
-
-
-turtle=t.Turtle()
-t.colormode(255)
-turtle.shape('turtle')
+#initialize constants
 screen=Screen()
-#move=[30, -30]
-#angle=[0,90,180,270]
-#
-#turtle.speed("fastest")
-#turtle.width(3)
-#angle_change_by=5
-#add key listeners
-screen.listen()
-screen.onkey(key="w", fun=move_forward)
-screen.onkey(key="s", fun=move_backward)
-screen.onkey(key="a", fun=left_angle)
-screen.onkey(key="d", fun=right_angle)
-screen.onkey(key="c", fun=clear)
+screen.setup(1500,1200)
+user_bet=screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ").lower()
+print("Your choice: "+user_bet)
+colors=["red", "orange", "yellow", "green", "blue",  "purple", "indigo"]
+arr=[]
+move_turtle_in_start_x=-730
+move_turtle_in_start_y=-1*100*3
+winner=""
+
+is_race_on=False
+
+has_winner=False
+
+#define functions
+
+def random_num():
+    return random.randint(0,30)
+
+#start code for turtle race
+for i in range(len(colors)):
+    arr.append(Turtle())
+    arr[i].color(colors[i])
+    arr[i].shape("turtle")
+    arr[i].penup()
+    arr[i].goto(move_turtle_in_start_x,move_turtle_in_start_y)
+    move_turtle_in_start_y+=100
+
+#define the border line
+border=Turtle()
+border.penup()
+border.goto(700,-600)
+border.pendown()
+border.goto(700,600)
+#start the race
+if user_bet:
+    is_race_on=True
+
+while is_race_on:
+    for i in range(len(colors)):
+        if arr[i].xcor()>=700:
+            if not has_winner:
+                has_winner=True
+                winner=colors[i]
+            is_race_on=False
+
+        else:
+            is_race_on=True
+            arr[i].forward(random_num())
+            move_turtle_in_start_x=-1*50*3
+            
+
+print("race is finished")
+if user_bet==winner:
+    print(f"you've won! The winner is {winner}")
+else:
+    print(f"you've lost! The winner is {winner}")
+
+
+
+
+#tim.penup()
+#tim.goto(-730,0)
+#tim.setheading(0)
+
+
+
+
+#end code for turtle race
 
 print("done")
-screen=Screen()
 screen.exitonclick()
