@@ -7,9 +7,12 @@ screen.setup(1500,1200)
 user_bet=screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ").lower()
 print("Your choice: "+user_bet)
 colors=["red", "orange", "yellow", "green", "blue",  "purple", "indigo"]
+border_cross=["False","False","False","False","False","False","False"]
 arr=[]
 move_turtle_in_start_x=-730
 move_turtle_in_start_y=-1*100*3
+move_after_won_x=-1*100*3
+
 winner=""
 
 is_race_on=False
@@ -40,19 +43,21 @@ border.goto(700,600)
 if user_bet:
     is_race_on=True
 
-while is_race_on:
+while "False" in border_cross:
     for i in range(len(colors)):
-        if arr[i].xcor()>=700:
-            if not has_winner:
-                has_winner=True
-                winner=colors[i]
-            is_race_on=False
+        if border_cross[i]!="True":
+            if arr[i].xcor()>=700:
+                border_cross[i]="True"
+                arr[i].goto(move_after_won_x, 500)
+                move_after_won_x+=100
+                arr[i].setheading(90)
+                if not has_winner:
+                    has_winner=True
+                    winner=colors[i]
+            else:
+                arr[i].forward(random_num())
+                move_turtle_in_start_x=-1*50*3
 
-        else:
-            is_race_on=True
-            arr[i].forward(random_num())
-            move_turtle_in_start_x=-1*50*3
-            
 
 print("race is finished")
 if user_bet==winner:
